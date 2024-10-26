@@ -4,8 +4,13 @@ import Link from 'next/link';
 import { Button } from '@/app/ui/button';
 import { useActionState, useState } from 'react';
 import { createCustomer, CustomerState } from '@/app/lib/customer-actions';
+import { Customer } from '@/app/lib/definitions';
 
-export default function Form() {
+export default function Form({
+  customer
+}: {
+  customer: Customer;
+}) {
   const initialState: CustomerState = { message: null, errors: {} };
   const [previewUrl, setPreviewUrl] = useState<string | null>(null);
 
@@ -35,7 +40,7 @@ export default function Form() {
               id="name"
               name="name"
               type="text"
-              placeholder="Enter a name"
+              placeholder={customer.name}
               className="peer block w-full rounded-md border border-gray-200 py-2 pl-10 text-sm outline-2 placeholder:text-gray-500"
               required
             />
@@ -57,7 +62,7 @@ export default function Form() {
               id="email"
               name="email"
               type="email"
-              placeholder="Enter an email"
+              placeholder={customer.email}
               className="peer block w-full rounded-md border border-gray-200 py-2 pl-10 text-sm outline-2 placeholder:text-gray-500"
               required
             />

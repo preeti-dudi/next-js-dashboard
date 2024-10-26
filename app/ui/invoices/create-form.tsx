@@ -10,7 +10,7 @@ import {
 } from '@heroicons/react/24/outline';
 import { Button } from '@/app/ui/button';
 import { useActionState } from 'react';
-import { createInvoice, State } from '@/app/lib/actions';
+import { createInvoice, State } from '@/app/lib/invoice-actions';
 
 
 
@@ -37,8 +37,8 @@ export default function Form({ customers }: { customers: CustomerField[] }) {
               <option value="" disabled>
                 Select a customer
               </option>
-              {customers.map((customer) => (
-                <option key={customer.id} value={customer.id}>
+              {customers.map((customer,i) => (
+                <option key={i} value={customer.id}>
                   {customer.name}
                 </option>
               ))}
@@ -47,8 +47,8 @@ export default function Form({ customers }: { customers: CustomerField[] }) {
           </div>
           <div id="customer-error" aria-live="polite" aria-atomic="true">
             {state.errors?.customerId &&
-              state.errors.customerId.map((error: string) => (
-                <p className="mt-2 text-sm text-red-500" key={error}>
+              state.errors.customerId.map((error: string,i) => (
+                <p className="mt-2 text-sm text-red-500" key={i}>
                   {error}
                 </p>
               ))}
@@ -78,8 +78,8 @@ export default function Form({ customers }: { customers: CustomerField[] }) {
           </div>
           <div id="amount-error" aria-live="polite" aria-atomic="true">
             {state.errors?.amount &&
-              state.errors.amount.map((error: string) => (
-                <p className="mt-2 text-sm text-red-500" key={error}>
+              state.errors.amount.map((error: string,i) => (
+                <p className="mt-2 text-sm text-red-500" key={i}>
                   {error}
                 </p>
               ))}
@@ -130,8 +130,8 @@ export default function Form({ customers }: { customers: CustomerField[] }) {
         
         <div id="status-error" aria-live="polite" aria-atomic="true">
             {state.errors?.status &&
-              state.errors.status.map((error: string) => (
-                <p className="mt-2 text-sm text-red-500" key={error}>
+              state.errors.status.map((error: string,i) => (
+                <p className="mt-2 text-sm text-red-500" key={i}>
                   {error}
                 </p>
               ))}
